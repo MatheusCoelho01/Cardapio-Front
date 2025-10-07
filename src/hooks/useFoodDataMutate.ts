@@ -9,9 +9,9 @@ const postData = async (data: FoodData): AxiosPromise<any> => {
     return response;
 }
 
-export function useFoodData(){
+export function useFoodDataMutate(){
     const queryClient = useQueryClient();
-    const query = useMutation({
+    const mutate = useMutation({
         mutationFn: postData,
         retry: 2,
         onSuccess: () => {
@@ -19,8 +19,5 @@ export function useFoodData(){
         }
     })
 
-    return {
-        ...query,
-        data: query.data?.data
-    }
+    return mutate;
 }
